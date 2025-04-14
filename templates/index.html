@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Contatos</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        th { background-color: #f2f2f2; }
+        input[type="text"] { padding: 5px; width: 200px; }
+        button { padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Contatos</h1>
+
+    <form action="/adicionar" method="post">
+        <input type="text" name="nome" placeholder="Nome">
+        <input type="text" name="telefone" placeholder="Telefone">
+        <input type="text" name="email" placeholder="Email">
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in contatos %}
+            <tr>
+                <td>{{ c[0] }}</td>
+                <td>{{ c[1] }}</td>
+                <td>{{ c[2] }}</td>
+                <td>{{ c[3] }}</td>
+                <td><a href="/editar/{{ c[0] }}">Editar</a></td>
+                <td><a href="/deletar/{{ c[0] }}" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</a></td>
+                
+                              
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
